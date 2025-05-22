@@ -4,14 +4,18 @@ Notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.8.5](https://github.com/dathbe/MMM-MyStandings/compare/v2.8.4...v2.8.5) - 2025-05-XX
+
+- Update devDependencies
+
 ## [2.8.4](https://github.com/dathbe/MMM-MyStandings/compare/v2.8.3...v2.8.4) - 2025-05-14
 
-- Bump dev dependency version
+- Update dependencies
 - Lint style changes
 
 ## [2.8.3](https://github.com/dathbe/MMM-MyStandings/compare/v2.8.2...v2.8.3) - 2025-05-06
 
-- Bump dev dependencies versions
+- Update devDependencies
 - Minor cosmetic changes
 
 ## [2.8.2](https://github.com/dathbe/MMM-MyStandings/compare/v2.8.1...v2.8.2) - 2025-05-01
@@ -101,7 +105,7 @@ Special thankyou to @KristjanESPERANTO for most of the work on this release
 - Fixed bug involving uniqueID
 - Some css formatting tweaks
 - Some README clarifications
-- Bumped axios dependency to v1.8.4 for security
+- Update axios dependency to v1.8.4 for security
 
 ## [2.3.0](https://github.com/dathbe/MMM-MyStandings/compare/v2.2.0...v2.3.0) - 2025-03-26
 

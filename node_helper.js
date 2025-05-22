@@ -52,6 +52,7 @@ module.exports = NodeHelper.create({
     while (standings.length === 0 && queryYear > 2020) {
       try {
         const response = await fetch(payload.url + queryYear)
+        Log.debug(`[MMM-MyStandings] ${payload.url} fetched`)
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`)
         }
