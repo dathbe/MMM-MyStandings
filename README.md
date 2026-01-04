@@ -64,10 +64,14 @@ Add MMM-MyStandings module to the `modules` array in the `config/config.js` file
 | showLogos        | Display logos (true) or not (false)<br><br>**Type:** `boolean` <br> **Default value:** `true`
 | useLocalLogos    | Display logos from folder if they are available (`true`) or displays all logos from the ESPN url (`false`)<br><br>**Type:** `boolean` <br> **Default value:** `true`
 | colored          | Chooses whether to display the module in full color (`true`) or grayscale (`false`)<br><br>**Type:** `boolean` <br> **Default value:** `true`
+| coloredLogo      | Chooses whether to display logos in full color (`true`) or grayscale (`false`). If `colored`  property is true, this has no effect <br><br>**Type:** `boolean` <br> **Default value:** `true`
+| coloredHeader    | Chooses whether to display headers in full color (`true`) or grayscale (`false`). If `colored`  property is true, this has no effect<br><br>**Type:** `boolean` <br> **Default value:** `true`
+| coloredRank      | Chooses whether to display the ranks in full color (`true`) or grayscale (`false`). If `colored`  property is true, this has no effect<br><br>**Type:** `boolean` <br> **Default value:** `true`
 | showByDivision   | Rotate through each division/group separately (`true`) or show all divisions/groups at once stacked on top of one another (`false`).  Note that `false` only combines divisions of the same type.  For example, in MLB, divisions will be grouped together, NL/AL leagues will be grouped together, playoffs will be grouped together, and wild cards will be grouped together.<br><br>**Type:** `boolean` <br> **Default value:** `true`
 | fadeSpeed        | Time in milliseconds to fade in the module<br><br>**Type:** `int` <br> **Default value:** `2000` (2 seconds)
 | rankingLength    | The number of teams to display when using `NCAAF Rankings`, `NCAAM Rankings`, `NCAAW Rankings`, or `Olympics`<br><br>**Type:** `int` <br> **Default value:** `25`
 | addLeagueToTitle | Adds the league name to the displayed table title<br><br>**Type:** `boolean` <br> **Default value:** `true`
+| highlightTeams   | Allows table rows for specific teams to be highlighted.<br><br>See below for options and formatting<br><br>**Type:** `array` of `dict`s <br>**Default value:** None
 
 ## Available Leagues and Groups
 
@@ -537,6 +541,33 @@ For any soccer league that does not have any groups, you should list only the le
 ## Logos
 
 You can add your own custom personal logos into the `logos_custom` folder, and they will not be disturbed when you update the module.  [Specific guidance can be found here](https://github.com/dathbe/MMM-MyStandings/tree/4.7.2/logos_custom).  (But if you have a logo that you think should be added for all users, please [share it by opening an issue](https://github.com/dathbe/MMM-MyStandings/issues).)
+
+## Team Highlighting
+
+The `highlightTeams` property allows you to highlight specific team/league combinations.
+
+`highlightTeams` is a list of `dict`s. The required keys are as follows:
+- `league`: The league of the team you want to highlight. Matches the league value from the `sports` property.
+- `teamAbbreviation`: The team that you want to highlight. Matches the `abbreviation` value for the team.
+
+The row for each specified team will have a new `class` applied in the format `highlight-league-teamAbbreviation` (example: `highlight-nhl-nyi` for NHL's New York Islanders)
+
+In order to apply highlighting, you can add an entry to `custom.css` for the class. Alternatively, you can specify the background and foreground (font) colors using additional dict keys:
+- `bgColor`: The color to use for highlighting the row. Use hex codes (#000000)
+- `fgColor`: The color to use for the text in the row. Use hex codes (#FFFFFF)
+
+Example: 
+
+```js
+config: {
+  highlightTeams: [
+    { league: "NHL", teamAbbreviation: "PIT", bgColor: "#FCB514",  fgColor: "#000000" }, //apply the bg and fg color directly
+    { league: "NFL", teamAbbreviation: "NYG"}, //must include an entry in custom.css for the class highlight-nfl-nyg
+  ]
+}
+```
+<img width="381" height="356" alt="image" src="https://github.com/user-attachments/assets/b11ce332-fefc-4391-9f6f-a91d468bfbf9" />
+
 
 ## Displaying Different Standings in Different Seasons
 
