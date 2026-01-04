@@ -3,21 +3,21 @@
 		{% for poll in standings %}
 			{% if poll != null %}
 			{% if config.showByDivision === false or (config.showByDivision and currentDivision === poll.name) %}
-				<tr class="league-separator">
+				<tr class="league-separator {% if config.coloredHeader === false %}grayscale{% endif %}">
 					<td colspan="2"><span>{{poll.shortName}}</span></td>
 				<td class="dataCell">Overall</td><td class="dataCell">PTS</td>
 				</tr>
 				{% for tm in poll.ranks %}
 					{% if tm.current <= config.rankingLength %}
-						<tr>
+						<tr class="{{ tm.highlightClass }}" style="{% if tm.bgColor %}background-color:{{ tm.bgColor }} !important;{% endif %}{% if tm.fgColor %}color:{{ tm.fgColor }} !important;{% endif %}">
 							{% if config.showLogos === true %}
-								<td class="logo" align="center" valign="middle"><img src="{{tm.team.logos[0].href}}"/></td>
+								<td class="logo {% if config.coloredLogo === false %}grayscale{% endif %}" align="center" valign="middle"><img src="{{tm.team.logos[0].href}}"/></td>
 								<td class="nameCell">
 							{% else %}
 								<td></td>
 								<td class="nameCell nameCellNoLogo">
 							{% endif %}
-							<div class="rank">{{tm.current}}</div>
+							<div class="rank {% if config.coloredRank === false %}grayscale{% endif %}">{{tm.current}}</div>
 							{% if config.nameStyle === "full" %}
 								{{tm.team.nickname}} {{tm.team.name}}</td>
 							{% elseif config.nameStyle === "abbreviation" %}
@@ -41,7 +41,7 @@
 		{% if division != null %}
 		{% if config.showByDivision === false or (config.showByDivision and currentDivision === division.name) or ignoreDivision === true %}
 			{% set somethingToDisplay = 1 %}
-			<tr class="league-separator">
+			<tr class="league-separator {% if config.coloredHeader === false %}grayscale{% endif %}">
 				<td colspan="2"><span>{{division.shortName}}</span></td>
 			{% if currentSport === "NHL" or currentSport === "NHL_PLAYOFFS" %}
 				<td class="dataCell">W</td><td class="dataCell">L</td><td class="dataCell">OTL</td><td class="dataCell bold">PTS</td>
@@ -66,9 +66,9 @@
 			{% endif %}
 			</tr>
 			{% for tm in division.standings.entries %}
-				<tr>
+				<tr class="{{ tm.highlightClass }}" style="{% if tm.bgColor %}background-color:{{ tm.bgColor }} !important;{% endif %}{% if tm.fgColor %}color:{{ tm.fgColor }} !important;{% endif %}">
 					{% if config.showLogos === true %}
-						<td class="logo" align="center" valign="middle"><img src="{{tm.team.logos[0].href}}"/></td>
+						<td class="logo {% if config.coloredLogo === false %}grayscale{% endif %}" align="center" valign="middle"><img src="{{tm.team.logos[0].href}}"/></td>
 						<td class="nameCell">
 					{% else %}
 						<td></td>
@@ -82,7 +82,7 @@
 						(currentSport === "NWSL")
 					)
 					and loop.index <= config.playoffFieldSize[currentSport] %}
-					<div class="rank">{{loop.index}}</div>{% elseif (currentSport === "NBA" and "Conference" in division.name) and loop.index <= config.playoffFieldSize["NBA_PLAYIN"]%}<div class="rank grayscale">{{loop.index}}</div>
+					<div class="rank {% if config.coloredRank === false %}grayscale{% endif %}">{{loop.index}}</div>{% elseif (currentSport === "NBA" and "Conference" in division.name) and loop.index <= config.playoffFieldSize["NBA_PLAYIN"]%}<div class="rank grayscale">{{loop.index}}</div>
 					{% endif %}
 					{% if config.nameStyle === "full" %}
 						{{tm.team.displayName}}</td>
