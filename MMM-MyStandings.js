@@ -20,8 +20,12 @@ Module.register('MMM-MyStandings', {
     showByDivision: true, // true, then display one division at a time.  false, display all divisions per sport
     fadeSpeed: 750,
     rankingLength: 25,
-    colored: true, // true, then display logos in color.  false, then display logos in grayscale
     addLeagueToTitle: true,
+    colored: true, // false -- removes color from the entire table. Included for backwards compatibility, use the individual flags for more control
+    coloredLogo: true,
+    coloredHeader: true,
+    coloredRank: true,
+    highlightTeams: [],
   },
 
   url: 'https://site.api.espn.com/apis/v2/sports/',
@@ -131,13 +135,62 @@ Module.register('MMM-MyStandings', {
 
   // Add all the data to the template.
   getTemplateData: function () {
-    return {
+    // base data returned to template
+    const data = {
       config: this.config,
       standings: this.standings,
       currentSport: this.currentSport,
       currentDivision: this.currentDivision,
       ignoreDivision: this.ignoreDivision,
+    };
+
+    let league = data.currentSport; // current league/sport
+    if (!league) {
+      return;
+    } else if (league.toUpperCase().includes("RANKINGS")) { //rankings not standings
+      if (data.standings.length === 0) {
+        return;
+      }
+
+      let polls = data.standings;
+      polls.forEach(poll => {
+        let rankings = poll.ranks;
+        rankings.forEach(team => {
+          let rules = this.config.highlightTeams;
+          // Check if this team should be highlighted
+          if (Array.isArray(rules)) {
+            rules.forEach(rule => {
+              if (league.toUpperCase().includes(rule.league.toUpperCase()) &&
+                  rule.teamAbbreviation.toUpperCase() === team.team?.abbreviation?.toUpperCase()) {
+                team.highlightClass = "highlight-" + rule.league.toLowerCase() + "-" + team.team.abbreviation.toLowerCase();
+                team.bgColor = rule.bgColor;
+                team.fgColor = rule.fgColor;
+              }
+            });
+          }
+        });
+      });
+    } else if (data.standings) {
+      data.standings.forEach(division => {
+        let teams = division.standings?.entries;
+        if (!teams) return;
+        teams.forEach(team => {
+          let rules = this.config.highlightTeams;
+          // Check if this team should be highlighted
+          if (Array.isArray(rules)) {
+            rules.forEach(rule => {
+              if (league.toUpperCase().includes(rule.league.toUpperCase()) &&
+                  rule.teamAbbreviation.toUpperCase() === team.team?.abbreviation?.toUpperCase()) {
+                team.highlightClass = "highlight-" + league.toLowerCase() + "-" + team.team.abbreviation.toLowerCase();
+                team.bgColor = rule.bgColor;
+                team.fgColor = rule.fgColor;
+              }
+            });
+          }
+        });
+      });
     }
+    return data;
   },
 
   getData: function (clearAll) {
