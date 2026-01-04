@@ -39,7 +39,8 @@
   "contributors": [
     "vincep5",
     "dathbe",
-    "KristjanESPERANTO"
+    "KristjanESPERANTO",
+    "drewski3420"
   ],
   "scripts": {
     "lint": "eslint",
