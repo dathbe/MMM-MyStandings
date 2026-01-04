@@ -356,6 +356,8 @@ Module.register('MMM-MyStandings', {
       if (sInfo.length != 0) {
         this.standingsInfo.push(sInfo)
         this.standingsSportInfo.push(receivedLeague)
+      } else {
+        Log.warn(`No rankings information received for ${receivedLeague}`)
       }
     }
     else if (notification.startsWith('STANDINGS_RESULT') && payload.uniqueID == this.identifier) {
@@ -370,6 +372,7 @@ Module.register('MMM-MyStandings', {
       }
       if (this.standingsInfo.at(-1).length === 0) {
         this.standingsInfo.pop()
+        Log.warn(`No standings information received for ${receivedLeague}`)
       }
       else {
         this.standingsSportInfo.push(receivedLeague)
