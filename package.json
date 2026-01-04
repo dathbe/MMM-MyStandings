@@ -37,10 +37,10 @@
   ],
   "author": "vincep5",
   "contributors": [
-    "vincep5",
-    "dathbe",
-    "KristjanESPERANTO",
-    "drewski3420"
+    {"name": "vincep5"},
+    {"name": "dathbe"},
+    {"name": "KristjanESPERANTO"},
+    {"name": "drewski3420"}
   ],
   "scripts": {
     "lint": "eslint",
