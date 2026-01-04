@@ -558,11 +558,11 @@ In order to apply highlighting, you can add an entry to `custom.css` for the cla
 
 Example: 
 
-```
+```js
 config: {
   highlightTeams: [
-    { league: "NHL", teamAbbreviaton: "PIT", bgColor: "#FCB514",  fgColor: "#000000" }, //apply the bg and fg color directly
-    { league: "NFL", teamAbbreviaton: "NYG"}, //must include an entry in custom.css for the class highlight-nfl-nyg
+    { league: "NHL", teamAbbreviation: "PIT", bgColor: "#FCB514",  fgColor: "#000000" }, //apply the bg and fg color directly
+    { league: "NFL", teamAbbreviation: "NYG"}, //must include an entry in custom.css for the class highlight-nfl-nyg
   ]
 }
 ```
