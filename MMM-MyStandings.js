@@ -142,55 +142,57 @@ Module.register('MMM-MyStandings', {
       currentSport: this.currentSport,
       currentDivision: this.currentDivision,
       ignoreDivision: this.ignoreDivision,
-    };
+    }
 
-    let league = data.currentSport; // current league/sport
+    let league = data.currentSport // current league/sport
     if (!league) {
-      return;
-    } else if (league.toUpperCase().includes("RANKINGS")) { //rankings not standings
+      return
+    }
+    else if (league.toUpperCase().includes('RANKINGS')) { // rankings not standings
       if (data.standings.length === 0) {
-        return;
+        return
       }
 
-      let polls = data.standings;
-      polls.forEach(poll => {
-        let rankings = poll.ranks;
-        rankings.forEach(team => {
-          let rules = this.config.highlightTeams;
+      let polls = data.standings
+      polls.forEach((poll) => {
+        let rankings = poll.ranks
+        rankings.forEach((team) => {
+          let rules = this.config.highlightTeams
           // Check if this team should be highlighted
           if (Array.isArray(rules)) {
-            rules.forEach(rule => {
-              if (league.toUpperCase().includes(rule.league.toUpperCase()) &&
-                  rule.teamAbbreviation.toUpperCase() === team.team?.abbreviation?.toUpperCase()) {
-                team.highlightClass = "highlight-" + rule.league.toLowerCase() + "-" + team.team.abbreviation.toLowerCase();
-                team.bgColor = rule.bgColor;
-                team.fgColor = rule.fgColor;
+            rules.forEach((rule) => {
+              if (league.toUpperCase().includes(rule.league.toUpperCase())
+                && rule.teamAbbreviation.toUpperCase() === team.team?.abbreviation?.toUpperCase()) {
+                team.highlightClass = 'highlight-' + rule.league.toLowerCase() + '-' + team.team.abbreviation.toLowerCase()
+                team.bgColor = rule.bgColor
+                team.fgColor = rule.fgColor
               }
-            });
+            })
           }
-        });
-      });
-    } else if (data.standings) {
-      data.standings.forEach(division => {
-        let teams = division.standings?.entries;
-        if (!teams) return;
-        teams.forEach(team => {
-          let rules = this.config.highlightTeams;
-          // Check if this team should be highlighted
-          if (Array.isArray(rules)) {
-            rules.forEach(rule => {
-              if (league.toUpperCase().includes(rule.league.toUpperCase()) &&
-                  rule.teamAbbreviation.toUpperCase() === team.team?.abbreviation?.toUpperCase()) {
-                team.highlightClass = "highlight-" + league.toLowerCase() + "-" + team.team.abbreviation.toLowerCase();
-                team.bgColor = rule.bgColor;
-                team.fgColor = rule.fgColor;
-              }
-            });
-          }
-        });
-      });
+        })
+      })
     }
-    return data;
+    else if (data.standings) {
+      data.standings.forEach((division) => {
+        let teams = division.standings?.entries
+        if (!teams) return
+        teams.forEach((team) => {
+          let rules = this.config.highlightTeams
+          // Check if this team should be highlighted
+          if (Array.isArray(rules)) {
+            rules.forEach((rule) => {
+              if (league.toUpperCase().includes(rule.league.toUpperCase())
+                && rule.teamAbbreviation.toUpperCase() === team.team?.abbreviation?.toUpperCase()) {
+                team.highlightClass = 'highlight-' + league.toLowerCase() + '-' + team.team.abbreviation.toLowerCase()
+                team.bgColor = rule.bgColor
+                team.fgColor = rule.fgColor
+              }
+            })
+          }
+        })
+      })
+    }
+    return data
   },
 
   getData: function (clearAll) {
@@ -356,7 +358,8 @@ Module.register('MMM-MyStandings', {
       if (sInfo.length != 0) {
         this.standingsInfo.push(sInfo)
         this.standingsSportInfo.push(receivedLeague)
-      } else {
+      }
+      else {
         Log.warn(`No rankings information received for ${receivedLeague}`)
       }
     }
