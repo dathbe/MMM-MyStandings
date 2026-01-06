@@ -70,6 +70,7 @@ Add MMM-MyStandings module to the `modules` array in the `config/config.js` file
 | showByDivision   | Rotate through each division/group separately (`true`) or show all divisions/groups at once stacked on top of one another (`false`).  Note that `false` only combines divisions of the same type.  For example, in MLB, divisions will be grouped together, NL/AL leagues will be grouped together, playoffs will be grouped together, and wild cards will be grouped together.<br><br>**Type:** `boolean` <br> **Default value:** `true`
 | fadeSpeed        | Time in milliseconds to fade in the module<br><br>**Type:** `int` <br> **Default value:** `2000` (2 seconds)
 | rankingLength    | The number of teams to display when using `NCAAF Rankings`, `NCAAM Rankings`, `NCAAW Rankings`, or `Olympics`<br><br>**Type:** `int` <br> **Default value:** `25`
+| standingsLength  | The number of teams to display when using standings leagues<br><br> **Type:** `int` <br> **Default value:** `unset`
 | addLeagueToTitle | Adds the league name to the displayed table title<br><br>**Type:** `boolean` <br> **Default value:** `true`
 | highlightTeams   | Allows table rows for specific teams to be highlighted.<br><br>See below for options and formatting<br><br>**Type:** `array` of `dict`s <br>**Default value:** None
 

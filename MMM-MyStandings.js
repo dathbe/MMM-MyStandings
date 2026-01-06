@@ -1056,6 +1056,9 @@ Module.register('MMM-MyStandings', {
         formattedStandingsObject[h].standings.entries[i].stats = finalValues
       }
       formattedStandingsObject[h].standings.entries.splice(eliminatedPos, 100)
+      if (this.config.standingsLength && formattedStandingsObject[h].standings.entries.length > this.config.standingsLength) {
+        formattedStandingsObject[h].standings.entries = formattedStandingsObject[h].standings.entries.slice(0, this.config.standingsLength);
+      }
     }
 
     return formattedStandingsObject.filter(Boolean)
