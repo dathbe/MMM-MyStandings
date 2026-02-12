@@ -142,55 +142,57 @@ Module.register('MMM-MyStandings', {
       currentSport: this.currentSport,
       currentDivision: this.currentDivision,
       ignoreDivision: this.ignoreDivision,
-    };
+    }
 
-    let league = data.currentSport; // current league/sport
+    let league = data.currentSport // current league/sport
     if (!league) {
-      return;
-    } else if (league.toUpperCase().includes("RANKINGS")) { //rankings not standings
+      return
+    }
+    else if (league.toUpperCase().includes('RANKINGS')) { // rankings not standings
       if (data.standings.length === 0) {
-        return;
+        return
       }
 
-      let polls = data.standings;
-      polls.forEach(poll => {
-        let rankings = poll.ranks;
-        rankings.forEach(team => {
-          let rules = this.config.highlightTeams;
+      let polls = data.standings
+      polls.forEach((poll) => {
+        let rankings = poll.ranks
+        rankings.forEach((team) => {
+          let rules = this.config.highlightTeams
           // Check if this team should be highlighted
           if (Array.isArray(rules)) {
-            rules.forEach(rule => {
-              if (league.toUpperCase().includes(rule.league.toUpperCase()) &&
-                  rule.teamAbbreviation.toUpperCase() === team.team?.abbreviation?.toUpperCase()) {
-                team.highlightClass = "highlight-" + rule.league.toLowerCase() + "-" + team.team.abbreviation.toLowerCase();
-                team.bgColor = rule.bgColor;
-                team.fgColor = rule.fgColor;
+            rules.forEach((rule) => {
+              if (league.toUpperCase().includes(rule.league.toUpperCase())
+                && rule.teamAbbreviation.toUpperCase() === team.team?.abbreviation?.toUpperCase()) {
+                team.highlightClass = 'highlight-' + rule.league.toLowerCase() + '-' + team.team.abbreviation.toLowerCase()
+                team.bgColor = rule.bgColor
+                team.fgColor = rule.fgColor
               }
-            });
+            })
           }
-        });
-      });
-    } else if (data.standings) {
-      data.standings.forEach(division => {
-        let teams = division.standings?.entries;
-        if (!teams) return;
-        teams.forEach(team => {
-          let rules = this.config.highlightTeams;
-          // Check if this team should be highlighted
-          if (Array.isArray(rules)) {
-            rules.forEach(rule => {
-              if (league.toUpperCase().includes(rule.league.toUpperCase()) &&
-                  rule.teamAbbreviation.toUpperCase() === team.team?.abbreviation?.toUpperCase()) {
-                team.highlightClass = "highlight-" + league.toLowerCase() + "-" + team.team.abbreviation.toLowerCase();
-                team.bgColor = rule.bgColor;
-                team.fgColor = rule.fgColor;
-              }
-            });
-          }
-        });
-      });
+        })
+      })
     }
-    return data;
+    else if (data.standings) {
+      data.standings.forEach((division) => {
+        let teams = division.standings?.entries
+        if (!teams) return
+        teams.forEach((team) => {
+          let rules = this.config.highlightTeams
+          // Check if this team should be highlighted
+          if (Array.isArray(rules)) {
+            rules.forEach((rule) => {
+              if (league.toUpperCase().includes(rule.league.toUpperCase())
+                && rule.teamAbbreviation.toUpperCase() === team.team?.abbreviation?.toUpperCase()) {
+                team.highlightClass = 'highlight-' + league.toLowerCase() + '-' + team.team.abbreviation.toLowerCase()
+                team.bgColor = rule.bgColor
+                team.fgColor = rule.fgColor
+              }
+            })
+          }
+        })
+      })
+    }
+    return data
   },
 
   getData: function (clearAll) {
@@ -310,10 +312,10 @@ Module.register('MMM-MyStandings', {
           sportUrls.push(this.url + 'lacrosse/nll/standings?sort=winPercentage:desc')
           break
         case 'Olympics':
-          sportUrls.push(`https://stats-api.sportsnet.ca/web_standings?league=oly&season_year=${new Date().getFullYear()}`)
+          sportUrls.push(`https://stats-api.sportsnet.ca/web_standings?league=oly&season_year=`)
           break
         case 'CFL':
-          sportUrls.push(`https://stats-api.sportsnet.ca/web_standings?league=cfl&season_year=${new Date().getFullYear()}`)
+          sportUrls.push(`https://stats-api.sportsnet.ca/web_standings?league=cfl&season_year=`)
           break
         default: // soccer & rugby
           sportUrls.push(this.url + this.SOCCER_LEAGUE_PATHS[this.config.sports[i].league] + '/standings?sort=rank:asc')
@@ -357,6 +359,9 @@ Module.register('MMM-MyStandings', {
         this.standingsInfo.push(sInfo)
         this.standingsSportInfo.push(receivedLeague)
       }
+      else {
+        Log.warn(`No rankings information received for ${receivedLeague}`)
+      }
     }
     else if (notification.startsWith('STANDINGS_RESULT') && payload.uniqueID == this.identifier) {
       if (notification.startsWith('STANDINGS_RESULT_SNET')) {
@@ -370,6 +375,7 @@ Module.register('MMM-MyStandings', {
       }
       if (this.standingsInfo.at(-1).length === 0) {
         this.standingsInfo.pop()
+        Log.warn(`No standings information received for ${receivedLeague}`)
       }
       else {
         this.standingsSportInfo.push(receivedLeague)
@@ -1050,6 +1056,9 @@ Module.register('MMM-MyStandings', {
         formattedStandingsObject[h].standings.entries[i].stats = finalValues
       }
       formattedStandingsObject[h].standings.entries.splice(eliminatedPos, 100)
+      if (this.config.standingsLength && formattedStandingsObject[h].standings.entries.length > this.config.standingsLength) {
+        formattedStandingsObject[h].standings.entries = formattedStandingsObject[h].standings.entries.slice(0, this.config.standingsLength)
+      }
     }
 
     return formattedStandingsObject.filter(Boolean)

@@ -4,6 +4,14 @@ Notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.10.0](https://github.com/dathbe/MMM-MyStandings/compare/v2.9.0...v2.10.0) - 2026-02-12
+
+- **NEW FEATURE**: `standingsLength` option to limit the length of standings lists
+- **BUG FIX**: Fix SNET urls
+- Improved logging of bad configs
+- Lint
+- Update dependencies
+
 ## [2.9.0](https://github.com/dathbe/MMM-MyStandings/compare/v2.8.10...v2.9.0) - 2026-01-03
 
 - **NEW FEATURE**: Allow highlighting of selected teams

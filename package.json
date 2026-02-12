@@ -1,6 +1,6 @@
 {
   "name": "mmm-mystandings",
-  "version": "2.8.0",
+  "version": "2.10.0",
   "type": "commonjs",
   "description": "A MagicMirror² module to display standings and rankings for your favorite leagues and divisions from many major sports, including Olympics.",
   "repository": {
@@ -37,10 +37,10 @@
   ],
   "author": "vincep5",
   "contributors": [
-    "vincep5",
-    "dathbe",
-    "KristjanESPERANTO",
-    "drewski3420"
+    {"name": "vincep5"},
+    {"name": "dathbe"},
+    {"name": "KristjanESPERANTO"},
+    {"name": "drewski3420"}
   ],
   "scripts": {
     "lint": "eslint",
@@ -49,9 +49,9 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@eslint/js": "^9.39.2",
-    "@stylistic/eslint-plugin": "^5.6.1",
-    "eslint": "^9.39.2",
-    "globals": "^17.0.0"
+    "@eslint/js": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.7.1",
+    "eslint": "^10.0.0",
+    "globals": "^17.3.0"
   }
 }
