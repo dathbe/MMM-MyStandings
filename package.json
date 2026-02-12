@@ -1,6 +1,6 @@
 {
   "name": "mmm-mystandings",
-  "version": "2.8.0",
+  "version": "2.10.0",
   "type": "commonjs",
   "description": "A MagicMirror² module to display standings and rankings for your favorite leagues and divisions from many major sports, including Olympics.",
   "repository": {
