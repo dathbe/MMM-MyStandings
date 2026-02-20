@@ -338,6 +338,16 @@ For any league, select the groups you want to rotate through or no groups to rot
 </details>
 
 <details>
+  <summary><b>Available World Baseball Classic ("WBC") Groups</b> (click to expand)</summary>
+
+- `Pool A`
+- `Pool B`
+- `Pool C`
+- `Pool D`
+    
+</details>
+
+<details>
   <summary><b>Available Olympics groups</b> (click to expand)</summary>
 
 ### Sort Order
