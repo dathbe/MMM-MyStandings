@@ -137,6 +137,8 @@ For any league, select the groups you want to rotate through or no groups to rot
 - `National League East`
 - `National League Central`
 - `National League West`
+- `Cactus League`
+- `Grapefruit League`
 
 ### Leagues                    
 - `American League`
