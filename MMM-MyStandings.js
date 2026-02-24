@@ -57,7 +57,7 @@ Module.register('MMM-MyStandings', {
   nba_l3: ['Atlantic', 'Central', 'Southeast', 'Northwest', 'Pacific', 'Southwest'],
   mlb_l1: ['Major League Baseball'],
   mlb_l2: ['American League', 'National League'],
-  mlb_l3: ['American League East', 'American League Central', 'American League West', 'National League East', 'National League Central', 'National League West'],
+  mlb_l3: ['American League East', 'American League Central', 'American League West', 'National League East', 'National League Central', 'National League West', 'Cactus League', 'Grapefruit League'],
   mlb_wc: ['AL Wild Card', 'NL Wild Card'],
   mlb_po: ['AL Playoffs', 'NL Playoffs'],
   nfl_l1: ['National Football League'],
@@ -356,6 +356,7 @@ Module.register('MMM-MyStandings', {
 
   socketNotificationReceived: function (notification, payload) {
     var receivedLeague = notification.split('-')[1]
+    Log.debug(receivedLeague)
     if (notification.includes('Rankings') && payload.uniqueID == this.identifier) {
       var sInfo = this.cleanupRankings(payload.result.rankings, receivedLeague)
       if (sInfo.length != 0) {
@@ -367,6 +368,7 @@ Module.register('MMM-MyStandings', {
       }
     }
     else if (notification.startsWith('STANDINGS_RESULT') && payload.uniqueID == this.identifier) {
+      Log.debug(payload.result)
       if (notification.startsWith('STANDINGS_RESULT_SNET')) {
         this.standingsInfo.push(this.cleanupSNETData(payload.result, receivedLeague))
       }
