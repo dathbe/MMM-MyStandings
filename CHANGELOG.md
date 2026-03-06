@@ -4,6 +4,10 @@ Notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.12.1](https://github.com/dathbe/MMM-MyStandings/compare/v2.12.0...v2.12.1) - 2026-03-06
+
+- Update dependencies
+
 ## [2.12.0](https://github.com/dathbe/MMM-MyStandings/compare/v2.11.0...v2.12.0) - 2026-02-24
 
 - **NEW FEATURE**: Add Cactus and Grapefruit Leagues for MLB Spring Training
