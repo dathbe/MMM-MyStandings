@@ -4,6 +4,10 @@ Notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.12.3](https://github.com/dathbe/MMM-MyStandings/compare/v2.12.2...v2.12.3) - 2026-03-XX
+
+- New image to show off `highlightTeams` config option
+
 ## [2.12.2](https://github.com/dathbe/MMM-MyStandings/compare/v2.12.1...v2.12.2) - 2026-03-10
 
 - **BUG FIX**: Correct WBC display format
