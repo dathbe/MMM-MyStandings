@@ -4,6 +4,13 @@ Notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.12.3](https://github.com/dathbe/MMM-MyStandings/compare/v2.12.2...v2.12.3) - 2026-08-05
+
+- **BUG FIX**: Add user-agent to fetch to avoid 403 error
+- New image to show off `highlightTeams` config option
+- Update dependencies
+- lint
+
 ## [2.12.2](https://github.com/dathbe/MMM-MyStandings/compare/v2.12.1...v2.12.2) - 2026-03-10
 
 - **BUG FIX**: Correct WBC display format

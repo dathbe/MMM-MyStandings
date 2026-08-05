@@ -579,7 +579,7 @@ config: {
   ]
 }
 ```
-<img width="381" height="356" alt="image" src="https://github.com/user-attachments/assets/b11ce332-fefc-4391-9f6f-a91d468bfbf9" />
+![screenshot](screenshot_highlighting.png)
 
 
 ## Displaying Different Standings in Different Seasons
