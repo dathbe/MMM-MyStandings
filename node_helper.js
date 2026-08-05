@@ -30,11 +30,20 @@ module.exports = NodeHelper.create({
 
   async getData(notification, payload) {
     try {
-      const response = await fetch(payload.url)
+      const response = await fetch(payload.url, {
+        method: 'GET',
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) MagicMirrorModule',
+          'Accept': 'application/json, text/plain, */*',
+        }
+      })
+      
       Log.debug(`[MMM-MyStandings] ${payload.url} fetched`)
+      
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
+      
       const data = await response.json()
       this.sendSocketNotification(notification, {
         result: data,
